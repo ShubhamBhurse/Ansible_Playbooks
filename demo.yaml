@@ -1,0 +1,7 @@
+# demo hello playbook
+- name: Hello playbook
+  hosts: localhost
+  become: true
+  tasks:
+    - name: printing Hello
+      command: echo "Hello!!" 
