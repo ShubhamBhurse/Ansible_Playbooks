@@ -53,7 +53,7 @@ else
     if [ -x "$(command -v apt-get)" ]; then
         sudo apt-get update
     elif [ -x "$(command -v yum)" ]; then
-        sudo yum update -y
+        #sudo yum update -y
     fi
     echo "********************************************************************************************"
     echo "********************************Updating System Finished************************************"
@@ -68,7 +68,7 @@ else
     echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
     echo "++++++++++++++++++++++++++++Downloading $playbook_name+++++++++++++++++++++++++++++++++++++" 
     echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    curl -O https://raw.githubusercontent.com/username/repo/main/"$playbook_name"
+    wget -O https://raw.githubusercontent.com/username/repo/main/"$playbook_name"
     echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
     echo "++++++++++++++++++++++++++++Downloaded $playbook_name+++++++++++++++++++++++++++++++++++++" 
     echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
@@ -97,7 +97,7 @@ else
     elif [ -x "$(command -v yum)" && "$(cat /etc/os-release | grep 'ID="rhe33l"')" ]; then
         sudo yum remove ansible -y
     elif [ -x $(command -v yum >/dev/null && grep -q 'ID="rhel"' /etc/os-release)]; then
-        sudo yum remove ansible-core -y
+        #sudo yum remove ansible-core -y
     fi
     echo "********************************************************************************************"
     echo "*************************Uninstalling Ansible Completed*************************************"
