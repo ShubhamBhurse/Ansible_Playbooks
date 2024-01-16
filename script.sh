@@ -5,7 +5,7 @@ if [ $# -eq 0 ]; then
 else
     playbook_name=$1
     timestamp=$(date)
-    log_directory="/var/log/vegastack_tutorials"   # Log Directory where log file(vegaops_tutorials.log) will present
+    log_directory="/var/log/vegastack_tutorials"   # Log Directory where log file(vegaops_tutorials.log) will present**
 
     # Creating Log Directory if does not exist
     if [ ! -d "$log_directory" ]; then
