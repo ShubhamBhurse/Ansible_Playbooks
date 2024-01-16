@@ -24,7 +24,7 @@ else
             echo "*********************************************************************************************"
             echo "*******************************Ansible Installation Completed********************************"
             echo "*********************************************************************************************"
-        elif [ -x "$(command -v yum)" && "$(cat /etc/os-release | grep 'ID="rhe33l"')" ]; then
+        elif [ -x "$(command -v yum)" && "$(cat /etc/os-release | grep 'ID="amzn"')" ]; then
             echo "************************************************************************************************"
             echo "*********************************Installing Ansible on Amazon Linux***************************"
             echo "************************************************************************************************"
@@ -92,7 +92,7 @@ else
     echo "********************************************************************************************"
     if [ -x "$(command -v apt-get)" ]; then
         sudo apt-get remove ansible -y
-    elif [ -x "$(command -v yum)" && "$(cat /etc/os-release | grep 'ID="rhe33l"')" ]; then
+    elif [ -x "$(command -v yum)" && "$(cat /etc/os-release | grep 'ID="amzn"')" ]; then
         sudo yum remove ansible -y
     elif [ -x $(command -v yum >/dev/null && grep -q 'ID="rhel"' /etc/os-release)]; then
         sudo yum remove ansible-core -y
