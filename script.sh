@@ -5,7 +5,7 @@ if [ $# -eq 0 ]; then
 else
     playbook_name=$1
     timestamp=$(date)
-    log_directory="/var/log/vegastack_tutorials"   # Log Directory where log file(vegaops_tutorials.log) will present**
+    log_directory="/var/log/vegastack_tutorials"   # Log Directory where log file(vegaops_tutorials.log) will present
 
     # Creating Log Directory if does not exist
     if [ ! -d "$log_directory" ]; then
@@ -53,7 +53,7 @@ else
     if [ -x "$(command -v apt-get)" ]; then
         sudo apt-get update
     elif [ -x "$(command -v yum)" ]; then
-        #sudo yum update -y
+        sudo yum update -y
     fi
     echo "********************************************************************************************"
     echo "********************************Updating System Finished************************************"
@@ -63,17 +63,15 @@ else
 
     # Function Calling to install ansible
     install_ansible
-    echo ""
-    echo ""
-    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    echo "++++++++++++++++++++++++++++Downloading $playbook_name+++++++++++++++++++++++++++++++++++++" 
-    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    wget -O https://raw.githubusercontent.com/username/repo/main/"$playbook_name"
-    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    echo "++++++++++++++++++++++++++++Downloaded $playbook_name+++++++++++++++++++++++++++++++++++++" 
-    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    echo ""
-    echo ""
+    
+    echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    echo "+++++++++++++++++++++++++++++ Downloading $playbook_name +++++++++++++++++++++++++++++++++++++"
+    echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    curl -O https://raw.githubusercontent.com/ShubhamBhurse/Ansible_Playbooks/main/"$playbook_name"
+    echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" 
+    echo "+++++++++++++++++++++++++++++ Downloading Completed ++++++++++++++++++++++++++++++++++++++++++"
+    echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+
     echo ""
     echo "********************************************************************************************"
     echo "************************Running Ansible playbook: $playbook_name****************************"
@@ -97,7 +95,7 @@ else
     elif [ -x "$(command -v yum)" && "$(cat /etc/os-release | grep 'ID="rhe33l"')" ]; then
         sudo yum remove ansible -y
     elif [ -x $(command -v yum >/dev/null && grep -q 'ID="rhel"' /etc/os-release)]; then
-        #sudo yum remove ansible-core -y
+        sudo yum remove ansible-core -y
     fi
     echo "********************************************************************************************"
     echo "*************************Uninstalling Ansible Completed*************************************"
