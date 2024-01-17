@@ -1,0 +1,32 @@
+# Installing Putty on ubuntu 22.04
+- name: Installing putty on ubuntu 22.04
+  hosts: localhost
+  become: true
+  tasks:
+    #- name: Update and upgrade
+    #  apt:
+    #    update_cache: yes
+          
+    - name: Installing Putty
+      apt:
+        name:
+          - putty
+          - putty-tools
+        state: present
+    
+    - name: Verify Putty version
+      command: "putty --version"
+      register: putty_version
+      become: false
+   
+    - name: Printing Putty version
+      debug:
+         var: putty_version.stdout
+    
+    #- name: Removing putty
+    #  apt:
+    #    name:
+    #      - putty
+    #      - putty-tools
+    #    state: absent
+
