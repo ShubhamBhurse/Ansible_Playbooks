@@ -14,15 +14,6 @@
           - putty-tools
         state: present
     
-    - name: Verify Putty version
-      command: "putty --version"
-      register: putty_version
-      become: false
-   
-    - name: Printing Putty version
-      debug:
-         var: putty_version.stdout
-    
     #- name: Removing putty
     #  apt:
     #    name:
