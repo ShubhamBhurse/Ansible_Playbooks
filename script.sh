@@ -13,6 +13,22 @@ else
         sudo chown -R "$USER:$USER" "$log_directory"
     fi
 
+    echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    echo "+++++++++++++++++++++++++++++ Downloading $playbook_name +++++++++++++++++++++++++++++++++++++"
+    echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    playbook_url="https://raw.githubusercontent.com/ShubhamBhurse/Ansible_Playbooks/main/$playbook_name"
+    if curl --output /dev/null --silent --head --fail "$playbook_url"; then
+        sudo curl -O "$playbook_url"
+        echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        echo "+++++++++++++++++++++++++++++ Downloading Completed ++++++++++++++++++++++++++++++++++++++++++"
+        echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    else
+        echo "Playbook '$playbook_name' not found in the repository."
+        exit 1
+    fi
+    echo ""
+    echo ""
+
     # Function to install Ansible based on distribution
     install_ansible() {
         if [ -x "$(command -v apt-get)" ] && grep -q 'ID=ubuntu' /etc/os-release; then
@@ -79,15 +95,7 @@ else
 
     # Function Calling to install ansible
     install_ansible
-
-    echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    echo "+++++++++++++++++++++++++++++ Downloading $playbook_name +++++++++++++++++++++++++++++++++++++"
-    echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    curl -O https://raw.githubusercontent.com/ShubhamBhurse/Ansible_Playbooks/main/"$playbook_name"
-    echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    echo "+++++++++++++++++++++++++++++ Downloading Completed ++++++++++++++++++++++++++++++++++++++++++"
-    echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-
+    echo ""
     echo ""
     echo "********************************************************************************************"
     echo "************************Running Ansible playbook: $playbook_name****************************"
